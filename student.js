@@ -17,7 +17,7 @@ function getStudentId() {
 // Zadanie 3
 module.exports = {
     getStudentFullName,
-    getStudentId
+    getStudentId,
 };
 
 //Zadanie 6
