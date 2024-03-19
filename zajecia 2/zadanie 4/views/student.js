@@ -3,6 +3,8 @@ const fs = require("fs");
 function renderPage(res, formData) {
     const { code, name, lastname, gender, age, studyField } = formData;
 
+    fs.writeFileSync(`${code}.txt`, `Numer albumu: ${code}\nImię: ${name}\nNazwisko: ${lastname}\nPłeć: ${gender}\nWiek: ${age}\nKierunek: ${studyField}`);
+
     const pageContent = `
         <html lang="pl">
             <head>
@@ -12,7 +14,7 @@ function renderPage(res, formData) {
             </head>
             <body>
                 <h1>Student profile</h1>
-                <p>Student ID: ${code}</p>
+                <p>Numer albumu: ${code}</p>
                 <p>Imię: ${name}</p>
                 <p>Nazwisko: ${lastname}</p>
                 <p>Płeć: ${gender}</p>
@@ -22,11 +24,9 @@ function renderPage(res, formData) {
         </html>
     `;
 
-    fs.writeFileSync(`${code}.txt`, pageContent);
-
-    res.setHeader("Content-Type", "text/html");
+    res.writeHead("Content-Type", "text/html");
     res.write(pageContent);
-    return res.end();
+    res.end();
 }
 
 module.exports = renderPage;
