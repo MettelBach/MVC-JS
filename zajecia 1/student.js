@@ -1,6 +1,6 @@
 // Zadanie 1
-const FULLNAME = 'Bohdana Yablinchuk'
-const STUDENT_ID = '44101'
+const FULLNAME = 'Dmytro Horbatov'
+const STUDENT_ID = '44019'
 
 console.log(`My name is ${FULLNAME}. Mystudent ID is ${STUDENT_ID}`)
 
@@ -9,6 +9,7 @@ console.log(`My name is ${FULLNAME}. Mystudent ID is ${STUDENT_ID}`)
 function getStudentFullName() {
     return FULLNAME
 }
+
 function getStudentId() {
     return STUDENT_ID
 }
@@ -17,12 +18,10 @@ function getStudentId() {
 // Zadanie 3
 module.exports = {
     getStudentFullName,
-    getStudentId,
+    getStudentId
 };
 
 //Zadanie 6
-const id = 1
-
 function newGetStudentFullName(id) {
     switch (id){
         case 0: return FULLNAME
@@ -41,4 +40,4 @@ function newGetStudentId(id) {
     }
 }
 
-console.log(`My name is ${newGetStudentFullName(id)}. Mystudent ID is ${newGetStudentId(id)}`)
+console.log(`My name is ${getStudentFullNameNEW(1)}. My student ID is ${getStudentIdNEW(1)}`)

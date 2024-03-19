@@ -1,20 +1,43 @@
-const http = require("http");
-const PORT = 3000;
-let server = http.createServer((req,res) => {
-    const { url } = req;
 
-    if (url === "/") {
+// Zadanie 3
+const student = require('./student')
 
-    }
+const FULLNAME = student.getStudentFullName()
+const STUDENT_ID = student.getStudentId()
 
-    res.setHeader("Content-Type", "text/html");
-    res.write("<html>");
-    res.write("<head><title> My first Node App</head></title>");
-    res.write("<body><h1>hello, world</h1></body>");
-    res.write("</html>");
-    res.end();
+console.log(`MySUDENT_ID name is ${FULLNAME}. My student ID is ${STUDENT_ID}`)
+
+// Zadanie 4
+const http = require('http')
+const PORT = 3000
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'})
+    res.end('Hello World!\n')
 });
 
 server.listen(PORT, () => {
-    console.log("Start");
+    console.log(`Server is running on ${PORT}`)
+    console.log(`My name is ${FULLNAME}. My student ID is ${STUDENT_ID}.`)
+});
+
+// Zadanie 5
+server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>About student</title>
+        </head>
+        <body>
+            <p>My name is ${FULLNAME}. My student ID is ${STUDENT_ID}.</p>
+        </body>
+        </html>
+    `;
+    res.end(htmlContent)
+});
+
+server.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`)
 });
