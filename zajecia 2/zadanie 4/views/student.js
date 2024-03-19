@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function renderPage(res, formData) {
     const parsedFormData = new URLSearchParams(formData);
 
@@ -8,7 +10,14 @@ function renderPage(res, formData) {
     const age = parsedFormData.get('age');
     const studyField = parsedFormData.get('studyField');
 
-    if (code && name && lastname && gender && age && studyField) {
+    const dataToWrite = `Numer albumu: ${code}\nImię: ${name}\nNazwisko: ${lastname}\nPłeć: ${gender}\nWiek: ${age}\nKierunek: ${studyField}`;
+
+    fs.writeFile(`${code}.txt`, dataToWrite, (err) => {
+        if (err) {
+            console.error(err);
+            return res.end("Błąd podczas zapisywania danych do pliku.");
+        }
+
         const pageContent = `
             <html lang="pl">
                 <head>
@@ -27,14 +36,11 @@ function renderPage(res, formData) {
                 </body>
             </html>
         `;
+        
         res.writeHead(200, { "Content-Type": "text/html" });
         res.write(pageContent);
         res.end();
-    } else {
-        res.writeHead(400, { "Content-Type": "text/html" });
-        res.write("<html><head><title>400 Bad Request</title></head><body>400 Bad Request: All fields are required</body></html>");
-        res.end();
-    }
+    });
 }
 
 module.exports = renderPage;

@@ -1,0 +1,6 @@
+Numer albumu: 42424
+Imię: fdsfs
+Nazwisko: sdfs
+Płeć: female
+Wiek: 123
+Kierunek: sffsfd
