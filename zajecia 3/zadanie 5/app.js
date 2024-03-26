@@ -5,6 +5,8 @@ const express = require('express'),
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(__dirname + '/public'));
+
 let students = [];
 
 app.get('/', (request, response) => {
@@ -28,8 +30,8 @@ app.post('/student', (request, response) => {
 
 app.get('/students', (request, response) => {
   let userList = '<ul>';
-  students.forEach((student, index) => {
-    userList += `<li><p>${index + 1}. ${student.fullName} - ${student.major}</p></li>`;
+  students.forEach((student) => {
+    userList += `<li><p>${student.fullName} - ${student.major}</p></li>`;
   });
   userList += '</ul>';
   response.send(userList);
